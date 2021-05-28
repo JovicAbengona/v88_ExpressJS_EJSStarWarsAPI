@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="https://learn.village88.com/assets/black_ninja-9adea777014ced1d5d36046555cf036c.ico?v=2" type="image/x-icon">
+        <link rel="stylesheet" href="/stylesheets/index.css">
+        <script src="https://kit.fontawesome.com/929adf1879.js" crossorigin="anonymous"></script>
+        <title>Village88 | NodeJS (Express) | Star Wars API</title>
+    </head>
+    <body>
+        <section>
+            <h1>Star Wars Wiki</h1>
+            <p>What would you like to know more about?</p>
+            <div class="buttons">
+                <button id="people">PEOPLE</button>
+                <button id="planets">PLANETS</button>
+            </div>
+            <div id="result"></div>
+        </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                let selected;   
+                let isClicked;
+                
+                $("#people").click(function(){
+                    isClicked = true;
+                    selected = "People";
+                    $("#result").html("");
+                    
+                    $.get("/people", function(data){
+                        isClicked = false;
+                        data.results.forEach(function(value){
+                            $("#result").append(`<p>${value.name}</p>`);
+                        });
+                    }, "json");
+                });
+                
+                $("#planets").click(function(){
+                    isClicked = true;
+                    selected = "Planets";
+                    $("#result").html("");
+                    
+                    $.get("/planets", function(data){
+                        isClicked = false;
+                        data.results.forEach(function(value){
+                            $("#result").append(`<p>${value.name}</p>`);
+                        });
+                    }, "json");
+                });
+
+                $("#result").scroll(function(){
+                    if(!isClicked){
+                        if(Math.ceil($(this).scrollTop() + $(this)[0].clientHeight) === $(this)[0].scrollHeight){
+                            $.get("/more", function(data){
+                                data.results.forEach(function(value){
+                                    $("#result").append(`<p>${value.name}</p>`);
+                                });
+                            }, "json");
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

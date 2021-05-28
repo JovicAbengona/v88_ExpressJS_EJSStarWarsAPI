@@ -1,0 +1,79 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0f0e0e;
+    text-align: center;
+}
+
+section{
+    padding: 20px;
+}
+
+section h1{
+    font-size: 64px;
+    color: #fac748;
+}
+
+section p{
+    letter-spacing: 5px;
+    font-size: 18px;
+    color: #ececec;
+}
+
+section .buttons{
+    padding: 20px;
+}
+
+section .buttons button:hover{
+    transition: background-color 0.3s;
+    background-color: #fac748;
+    color: #0f0e0e;
+    cursor: pointer;
+}
+section .buttons button{
+    background-color: transparent;
+    border: 3px solid #fac748;
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #fac748;
+    margin: 10px;
+}
+
+section #result{
+    background-color: transparent;
+    border: 3px solid #ececec;
+    border-radius: 4px;
+    margin: 0 auto;
+    overflow: auto;
+    height: 50vh;
+    width: 50%;
+}
+
+/* width */
+section #result::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+section #result::-webkit-scrollbar-track {
+    background: #0f0e0e;
+}
+
+/* Handle */
+section #result::-webkit-scrollbar-thumb {
+    background: #fac748;
+}
+
+/* Handle on hover */
+section #result::-webkit-scrollbar-thumb:hover {
+    background: #e6a606;
+}
+
+section #result p{
+    padding: 20px;
+}
